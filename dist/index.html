@@ -14,7 +14,7 @@
     <div class="container">
         <h1>Cadastro de Nomes</h1>
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <input type="text" id="texto" class="form-control"
                 style="display:inline; vertical-align: middle; width: auto;"
                 >
@@ -39,8 +39,11 @@
 
     window.onload = () => {
         const lista = document.querySelector('#lista');
+        const botao = document.querySelector('#botao');
+        const texto = document.querySelector('#texto');
+        botao.addEventListener('click', create);
         read();
-    }
+    };
 
     function read() {
         lista.innerHTML = '';
@@ -59,7 +62,14 @@
         }
 
     function create() {
-        
+        const name = texto.value;
+        axios.post('/create', {name})
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     function edit() {
