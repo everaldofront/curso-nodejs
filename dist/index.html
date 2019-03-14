@@ -44,6 +44,7 @@
 
         botao.addEventListener('click', create);
         lista.addEventListener('click', del);
+        lista.addEventListener('click', edit);
         read();
     };
 
@@ -53,6 +54,12 @@
                         style="float: right; margin-left: 5px;"
                         data-id="${id}";
                     ></i>
+
+                    <i class="btn btn-primary update fa fa-wrench"
+                        style="float: right;"
+                        data-id="${id}";
+                    ></i>
+
                 </li>`;
     }
 
@@ -84,8 +91,17 @@
             });
     }
 
-    function edit() {
-        
+    function edit(element) {
+        if (element.target.classList.contains('update')) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.setAttribute('value', '');
+            const pai = element.target.parentElement;
+            const id = element.target.dataset.id;
+
+            pai.innerHTML = '';
+            pai.appendChild(input);
+        }
     }
 
     function update() {
